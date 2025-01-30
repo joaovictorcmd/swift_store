@@ -5,6 +5,8 @@ import com.joaovictorcmd.swiftstore.entities.Product;
 import com.joaovictorcmd.swiftstore.mappers.ProductMapper;
 import com.joaovictorcmd.swiftstore.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,12 +22,17 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
+    @Transactional
+    public ProductDTO insert(ProductDTO productDTO) {
+        Product product = ProductMapper.INSTANCE.toProduct(productDTO);
+        product = productRepository.save(product);
+        return ProductMapper.INSTANCE.toProductDTO(product);
+    }
+
     @Transactional(readOnly = true)
-    public List<ProductDTO> findAll() {
-        return productRepository.findAll()
-                .stream()
-                .map(ProductMapper.INSTANCE::toProductDTO)
-                .toList();
+    public Page<ProductDTO> findAll(Pageable pageable) {
+        Page<Product> products = productRepository.findAll(pageable);
+        return products.map(ProductMapper.INSTANCE::toProductDTO);
     }
 
     @Transactional(readOnly = true)
@@ -33,13 +40,6 @@ public class ProductService {
         return productRepository.findById(id)
                 .map(ProductMapper.INSTANCE::toProductDTO)
                 .orElseThrow();
-    }
-
-    @Transactional
-    public ProductDTO insert(ProductDTO productDTO) {
-        Product product = ProductMapper.INSTANCE.toProduct(productDTO);
-        product = productRepository.save(product);
-        return ProductMapper.INSTANCE.toProductDTO(product);
     }
 
     @Transactional

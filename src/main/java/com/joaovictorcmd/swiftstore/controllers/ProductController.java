@@ -3,12 +3,13 @@ package com.joaovictorcmd.swiftstore.controllers;
 import com.joaovictorcmd.swiftstore.dto.ProductDTO;
 import com.joaovictorcmd.swiftstore.services.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 
 /**
  * @author joaovictorcmd
@@ -35,9 +36,9 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProductDTO>> findAll() {
-        List<ProductDTO> productDTOList = productService.findAll();
-        return ResponseEntity.ok(productDTOList);
+    public ResponseEntity<Page<ProductDTO>> findAll(Pageable pageable) {
+        Page<ProductDTO> productDTOPage = productService.findAll(pageable);
+        return ResponseEntity.ok(productDTOPage);
     }
 
     @GetMapping(value = "/{id}")
