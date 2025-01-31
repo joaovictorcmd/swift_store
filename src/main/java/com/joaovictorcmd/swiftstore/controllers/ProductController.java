@@ -16,8 +16,8 @@ import java.net.URI;
  * @date 2025 Jan 29
  */
 @RestController
-@RequestMapping("/product")
 @RequiredArgsConstructor
+@RequestMapping("/products")
 public class ProductController {
 
     private final ProductService productService;

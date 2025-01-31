@@ -10,8 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 /**
  * @author joaovictorcmd
  * @date 2025 Jan 29
@@ -21,33 +19,33 @@ import java.util.List;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final ProductMapper productMapper;
 
     @Transactional
     public ProductDTO insert(ProductDTO productDTO) {
-        Product product = ProductMapper.INSTANCE.toProduct(productDTO);
+        Product product = productMapper.toEntity(productDTO);
         product = productRepository.save(product);
-        return ProductMapper.INSTANCE.toProductDTO(product);
+        return productMapper.toDTO(product);
     }
 
     @Transactional(readOnly = true)
     public Page<ProductDTO> findAll(Pageable pageable) {
         Page<Product> products = productRepository.findAll(pageable);
-        return products.map(ProductMapper.INSTANCE::toProductDTO);
+        return products.map(productMapper::toDTO);
     }
 
     @Transactional(readOnly = true)
     public ProductDTO findById(Long id) {
         return productRepository.findById(id)
-                .map(ProductMapper.INSTANCE::toProductDTO)
+                .map(productMapper::toDTO)
                 .orElseThrow();
     }
 
     @Transactional
     public ProductDTO update(Long id, ProductDTO productDTO) {
         Product product = productRepository.findById(id).orElseThrow();
-        ProductMapper.INSTANCE.updateProductFromDTO(productDTO, product);
-        product = productRepository.save(product);
-        return ProductMapper.INSTANCE.toProductDTO(product);
+        productMapper.updateEntityFromDTO(productDTO, product);
+        return productMapper.toDTO(product);
     }
 
     @Transactional
