@@ -2,12 +2,16 @@ package com.joaovictorcmd.swiftstore.services;
 
 import com.joaovictorcmd.swiftstore.dto.ProductDTO;
 import com.joaovictorcmd.swiftstore.entities.Product;
+import com.joaovictorcmd.swiftstore.exceptions.DatabaseException;
+import com.joaovictorcmd.swiftstore.exceptions.ResourceNotFoundException;
 import com.joaovictorcmd.swiftstore.mappers.ProductMapper;
 import com.joaovictorcmd.swiftstore.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -38,18 +42,30 @@ public class ProductService {
     public ProductDTO findById(Long id) {
         return productRepository.findById(id)
                 .map(productMapper::toDTO)
-                .orElseThrow();
+                .orElseThrow(
+                        () -> new ResourceNotFoundException("Resource not found")
+                );
     }
 
     @Transactional
     public ProductDTO update(Long id, ProductDTO productDTO) {
-        Product product = productRepository.findById(id).orElseThrow();
+        Product product = productRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Resource not found")
+        );
         productMapper.updateEntityFromDTO(productDTO, product);
         return productMapper.toDTO(product);
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.SUPPORTS)
     public void delete(Long id) {
-        productRepository.deleteById(id);
+        if (!productRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Resource not found");
+        }
+
+        try {
+            productRepository.deleteById(id);
+        } catch (DataIntegrityViolationException exception) {
+            throw new DatabaseException("Referential integrity failure");
+        }
     }
 }
