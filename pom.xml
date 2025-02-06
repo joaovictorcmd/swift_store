@@ -78,10 +78,17 @@
             <version>${org.mapstruct.version}</version>
         </dependency>
 
-        <!-- Spring Security -->
+        <!-- Spring Boot Starter Security -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!-- Spring Authorization Server -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-oauth2-authorization-server</artifactId>
+            <version>1.4.0</version>
         </dependency>
 
         <!-- OAuth2 Resource Server -->
@@ -95,8 +102,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-oauth2-client</artifactId>
         </dependency>
-
-
 
     </dependencies>
 
