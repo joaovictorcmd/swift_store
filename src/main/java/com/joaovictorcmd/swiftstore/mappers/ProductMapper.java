@@ -3,7 +3,6 @@ package com.joaovictorcmd.swiftstore.mappers;
 import com.joaovictorcmd.swiftstore.dto.ProductDTO;
 import com.joaovictorcmd.swiftstore.entities.Product;
 import org.mapstruct.*;
-import org.mapstruct.factory.Mappers;
 
 /**
  * @author joaovictorcmd
