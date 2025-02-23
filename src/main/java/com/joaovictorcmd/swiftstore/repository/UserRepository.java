@@ -2,6 +2,9 @@ package com.joaovictorcmd.swiftstore.repository;
 
 import com.joaovictorcmd.swiftstore.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Optional;
 
 /**
  * @author joaovictorcmd
@@ -9,5 +12,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    User findByEmail(String email);
+    Optional<User> findByEmail(String email);
 }
