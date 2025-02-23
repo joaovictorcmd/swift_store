@@ -1,6 +1,6 @@
 package com.joaovictorcmd.swiftstore.security;
 
-import com.joaovictorcmd.swiftstore.repositories.UserRepository;
+import com.joaovictorcmd.swiftstore.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
