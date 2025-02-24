@@ -1,6 +1,7 @@
 package com.joaovictorcmd.swiftstore.controller;
 
 import com.joaovictorcmd.swiftstore.model.dto.ProductDTO;
+import com.joaovictorcmd.swiftstore.model.dto.ProductMinDTO;
 import com.joaovictorcmd.swiftstore.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ProductDTO> insert(@Valid @RequestBody ProductDTO productDTO) {
         productDTO = productService.insert(productDTO);
 
@@ -38,22 +40,22 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<ProductDTO>> findAll(
+    public ResponseEntity<Page<ProductMinDTO>> findAll(
             @RequestParam(name = "name", defaultValue = "") String name,
             Pageable pageable)
     {
-        Page<ProductDTO> productDTOPage = productService.findAll(name, pageable);
-        return ResponseEntity.ok(productDTOPage);
+        Page<ProductMinDTO> productMinDTOPage = productService.findAll(name, pageable);
+        return ResponseEntity.ok(productMinDTOPage);
     }
 
     @GetMapping(value = "/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
         ProductDTO productDTO = productService.findById(id);
         return ResponseEntity.ok(productDTO);
     }
 
     @PutMapping(value = "/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ProductDTO> update(
             @PathVariable Long id,
             @Valid @RequestBody ProductDTO productDTO)
@@ -63,6 +65,7 @@ public class ProductController {
     }
 
     @DeleteMapping(value = "/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         productService.delete(id);
         return ResponseEntity.noContent().build();
