@@ -1,8 +1,11 @@
 package com.joaovictorcmd.swiftstore.model.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+
+import java.util.List;
 
 /**
  * @author joaovictorcmd
@@ -22,5 +25,9 @@ public record ProductDTO(
         @Positive(message = "Price must be a positive value")
         Double price,
 
-        String imgUrl) {
+        String imgUrl,
+
+        @NotEmpty(message = "Required field")
+        List<CategoryDTO> categories
+) {
 }
