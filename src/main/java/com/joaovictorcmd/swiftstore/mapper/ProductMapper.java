@@ -1,6 +1,7 @@
 package com.joaovictorcmd.swiftstore.mapper;
 
 import com.joaovictorcmd.swiftstore.model.dto.ProductDTO;
+import com.joaovictorcmd.swiftstore.model.dto.ProductMinDTO;
 import com.joaovictorcmd.swiftstore.model.entity.Product;
 import org.mapstruct.*;
 
@@ -12,6 +13,8 @@ import org.mapstruct.*;
 public interface ProductMapper {
 
     ProductDTO toDTO(Product product);
+
+    ProductMinDTO toMinDTO(Product product);
 
     @Mapping(target = "categories", ignore = true)
     @Mapping(target = "items", ignore = true)

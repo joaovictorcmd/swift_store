@@ -1,6 +1,7 @@
 package com.joaovictorcmd.swiftstore.service;
 
 import com.joaovictorcmd.swiftstore.model.dto.ProductDTO;
+import com.joaovictorcmd.swiftstore.model.dto.ProductMinDTO;
 import com.joaovictorcmd.swiftstore.model.entity.Product;
 import com.joaovictorcmd.swiftstore.exception.DatabaseException;
 import com.joaovictorcmd.swiftstore.exception.ResourceNotFoundException;
@@ -33,9 +34,9 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public Page<ProductDTO> findAll(String name, Pageable pageable) {
+    public Page<ProductMinDTO> findAll(String name, Pageable pageable) {
         Page<Product> products = productRepository.searchByName(name, pageable);
-        return products.map(productMapper::toDTO);
+        return products.map(productMapper::toMinDTO);
     }
 
     @Transactional(readOnly = true)
