@@ -1,9 +1,7 @@
 package com.joaovictorcmd.swiftstore.model.dto;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+import org.hibernate.validator.constraints.URL;
 
 import java.util.List;
 
@@ -23,8 +21,11 @@ public record ProductDTO(
         String description,
 
         @Positive(message = "Price must be a positive value")
+        @NotNull(message = "Required field")
         Double price,
 
+        @URL(message = "Invalid URL")
+        @NotBlank(message = "Required field")
         String imgUrl,
 
         @NotEmpty(message = "Required field")
