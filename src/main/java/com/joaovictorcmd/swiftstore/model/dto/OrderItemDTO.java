@@ -10,7 +10,8 @@ public record OrderItemDTO(
         Long productId,
         String name,
         Double price,
-        Integer quantity
+        Integer quantity,
+        String imgUrl
 ) {
     @JsonProperty("subtotal")
     public Double getSubtotal() {
