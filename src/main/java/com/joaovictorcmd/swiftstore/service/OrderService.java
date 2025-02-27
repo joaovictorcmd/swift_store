@@ -34,16 +34,17 @@ public class OrderService {
 
     @Transactional(readOnly = true)
     public OrderDTO findById(Long id) {
-        return orderRepository.findById(id)
-                .map(orderMapper::toDTO)
-                .orElseThrow(
-                        () -> new ResourceNotFoundException("Resource not found")
-                );
+        Order order = orderRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Resource not found")
+        );
+
+        authService.validateSelfOrAdmin(order.getClient().getId());
+
+        return orderMapper.toDTO(order);
     }
 
     @Transactional
     public OrderDTO insert(OrderDTO orderDTO) {
-
         User user = authService.authenticated();
 
         Order order = new Order();

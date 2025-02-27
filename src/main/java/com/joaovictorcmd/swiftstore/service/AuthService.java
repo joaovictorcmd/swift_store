@@ -1,5 +1,6 @@
 package com.joaovictorcmd.swiftstore.service;
 
+import com.joaovictorcmd.swiftstore.exception.ForbiddenException;
 import com.joaovictorcmd.swiftstore.exception.UserNotAuthenticatedException;
 import com.joaovictorcmd.swiftstore.model.entity.User;
 import com.joaovictorcmd.swiftstore.repository.UserRepository;
@@ -37,5 +38,12 @@ public class AuthService implements UserDetailsService {
         return userRepository.findByEmail(username).orElseThrow(
                 () -> new UserNotAuthenticatedException("Invalid user")
         );
+    }
+
+    public void validateSelfOrAdmin(Long userId) {
+        User me = authenticated();
+        if ((!me.hasRole("ADMIN")) && (!me.getId().equals(userId))) {
+            throw new ForbiddenException("Access denied");
+        }
     }
 }

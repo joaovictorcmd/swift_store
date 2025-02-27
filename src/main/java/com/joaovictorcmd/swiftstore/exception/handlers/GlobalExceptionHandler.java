@@ -58,6 +58,18 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(status).body(error);
     }
 
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<ErrorResponse> handleForbiddenException(ForbiddenException exception, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.FORBIDDEN;
+        ErrorResponse error = new ErrorResponse(
+                Instant.now(),
+                status.value(),
+                exception.getMessage(),
+                request.getRequestURI()
+        );
+        return ResponseEntity.status(status).body(error);
+    }
+
     @ExceptionHandler(EmailAlreadyExistsException.class)
     public ResponseEntity<ErrorResponse> handleEmailAlreadyExistsException(EmailAlreadyExistsException exception, HttpServletRequest request) {
         HttpStatus status = HttpStatus.CONFLICT;

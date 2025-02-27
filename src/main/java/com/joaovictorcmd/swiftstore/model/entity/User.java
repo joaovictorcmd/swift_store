@@ -50,6 +50,10 @@ public class User implements UserDetails {
         this.role = role;
     }
 
+    public boolean hasRole(String roleName) {
+        return role != null && role.name().equalsIgnoreCase(roleName);
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (this.role == UserRole.ADMIN) {
