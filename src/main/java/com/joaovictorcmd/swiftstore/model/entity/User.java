@@ -36,6 +36,8 @@ public class User implements UserDetails {
     private String phone;
     private LocalDate birthDate;
     private String password;
+
+    @Enumerated(EnumType.STRING)
     private UserRole role;
 
     @OneToMany(mappedBy = "client")

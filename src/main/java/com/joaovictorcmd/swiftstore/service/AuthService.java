@@ -1,6 +1,7 @@
 package com.joaovictorcmd.swiftstore.service;
 
 import com.joaovictorcmd.swiftstore.exception.UserNotAuthenticatedException;
+import com.joaovictorcmd.swiftstore.model.entity.User;
 import com.joaovictorcmd.swiftstore.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -26,19 +27,15 @@ public class AuthService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
-    protected UserDetails authenticated() {
+    protected User authenticated() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        if (authentication == null || !authentication.isAuthenticated() || authentication.getPrincipal().equals("anonymousUser")) {
-            throw new UserNotAuthenticatedException("User is not authenticated");
+        if (authentication == null || !authentication.isAuthenticated() || authentication.getPrincipal().equals("anonymousUser") || authentication.getPrincipal() == null) {
+            throw new UserNotAuthenticatedException("Unauthenticated user");
         }
+        String username = authentication.getName();
 
-        var principal = authentication.getPrincipal();
-
-        if (principal instanceof UserDetails userDetails) {
-            return userDetails;
-        }
-
-        throw new UserNotAuthenticatedException("Unexpected authentication principal type");
+        return userRepository.findByEmail(username).orElseThrow(
+                () -> new UserNotAuthenticatedException("Invalid user")
+        );
     }
 }
