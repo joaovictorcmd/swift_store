@@ -1,4 +1,4 @@
-package com.joaovictorcmd.swiftstore.security;
+package com.joaovictorcmd.swiftstore.config.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;

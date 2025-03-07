@@ -1,8 +1,7 @@
-package com.joaovictorcmd.swiftstore.repository;
+package com.joaovictorcmd.swiftstore.model.repository;
 
 import com.joaovictorcmd.swiftstore.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Optional;
 

@@ -1,7 +1,7 @@
-package com.joaovictorcmd.swiftstore.mapper;
+package com.joaovictorcmd.swiftstore.model.mapper;
 
-import com.joaovictorcmd.swiftstore.model.dto.PaymentDTO;
 import com.joaovictorcmd.swiftstore.model.entity.Payment;
+import com.joaovictorcmd.swiftstore.model.dto.PaymentDTO;
 import org.mapstruct.Mapper;
 
 /**

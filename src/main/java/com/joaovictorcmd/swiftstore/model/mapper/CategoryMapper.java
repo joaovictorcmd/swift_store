@@ -1,7 +1,7 @@
-package com.joaovictorcmd.swiftstore.mapper;
+package com.joaovictorcmd.swiftstore.model.mapper;
 
-import com.joaovictorcmd.swiftstore.model.dto.CategoryDTO;
 import com.joaovictorcmd.swiftstore.model.entity.Category;
+import com.joaovictorcmd.swiftstore.model.dto.CategoryDTO;
 import org.mapstruct.Mapper;
 
 /**

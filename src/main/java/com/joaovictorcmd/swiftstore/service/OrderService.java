@@ -1,7 +1,7 @@
 package com.joaovictorcmd.swiftstore.service;
 
 import com.joaovictorcmd.swiftstore.exception.ResourceNotFoundException;
-import com.joaovictorcmd.swiftstore.mapper.OrderMapper;
+import com.joaovictorcmd.swiftstore.model.mapper.OrderMapper;
 import com.joaovictorcmd.swiftstore.model.dto.OrderDTO;
 import com.joaovictorcmd.swiftstore.model.dto.OrderItemDTO;
 import com.joaovictorcmd.swiftstore.model.entity.Order;
@@ -9,9 +9,9 @@ import com.joaovictorcmd.swiftstore.model.entity.Product;
 import com.joaovictorcmd.swiftstore.model.entity.User;
 import com.joaovictorcmd.swiftstore.model.entity.associations.OrderItem;
 import com.joaovictorcmd.swiftstore.model.entity.enums.OrderStatus;
-import com.joaovictorcmd.swiftstore.repository.OrderItemRepository;
-import com.joaovictorcmd.swiftstore.repository.OrderRepository;
-import com.joaovictorcmd.swiftstore.repository.ProductRepository;
+import com.joaovictorcmd.swiftstore.model.repository.OrderItemRepository;
+import com.joaovictorcmd.swiftstore.model.repository.OrderRepository;
+import com.joaovictorcmd.swiftstore.model.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

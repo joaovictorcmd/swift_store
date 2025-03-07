@@ -3,7 +3,7 @@ package com.joaovictorcmd.swiftstore.service;
 import com.joaovictorcmd.swiftstore.exception.ForbiddenException;
 import com.joaovictorcmd.swiftstore.exception.UserNotAuthenticatedException;
 import com.joaovictorcmd.swiftstore.model.entity.User;
-import com.joaovictorcmd.swiftstore.repository.UserRepository;
+import com.joaovictorcmd.swiftstore.model.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

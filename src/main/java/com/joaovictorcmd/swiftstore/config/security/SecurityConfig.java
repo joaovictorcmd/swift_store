@@ -1,4 +1,4 @@
-package com.joaovictorcmd.swiftstore.security;
+package com.joaovictorcmd.swiftstore.config.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

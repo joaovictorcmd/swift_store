@@ -1,4 +1,4 @@
-package com.joaovictorcmd.swiftstore.repository;
+package com.joaovictorcmd.swiftstore.model.repository;
 
 import com.joaovictorcmd.swiftstore.model.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;

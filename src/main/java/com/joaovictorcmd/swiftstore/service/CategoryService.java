@@ -1,8 +1,8 @@
 package com.joaovictorcmd.swiftstore.service;
 
-import com.joaovictorcmd.swiftstore.mapper.CategoryMapper;
+import com.joaovictorcmd.swiftstore.model.mapper.CategoryMapper;
 import com.joaovictorcmd.swiftstore.model.dto.CategoryDTO;
-import com.joaovictorcmd.swiftstore.repository.CategoryRepository;
+import com.joaovictorcmd.swiftstore.model.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

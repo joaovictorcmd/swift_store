@@ -1,4 +1,4 @@
-package com.joaovictorcmd.swiftstore.mapper;
+package com.joaovictorcmd.swiftstore.model.mapper;
 
 import com.joaovictorcmd.swiftstore.model.dto.OrderDTO;
 import com.joaovictorcmd.swiftstore.model.entity.Order;
