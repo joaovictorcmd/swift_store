@@ -1,6 +1,6 @@
 # SwiftStore API
 
-<nav>
+<p>
    <a href="#prerequisites">Prerequisites</a> 
    &nbsp; | &nbsp;
    <a href="#getting-started">Getting Started</a> 
@@ -10,12 +10,13 @@
    <a href="#colab">Collaborators</a> 
    &nbsp; | &nbsp;
    <a href="#contribute">Contribute</a> 
-</nav>
+</p>
 
-This project is a RESTful API for the SwiftStore e-commerce platform, developed using Spring Boot and following the MVC
-architecture pattern. The API enables secure and efficient management of products, orders, and user authentication
-through JWT tokens.
-
+<p>
+   This project is a RESTful API for the SwiftStore e-commerce platform, developed using Spring Boot and following the MVC
+   architecture pattern. The API enables secure and efficient management of products, orders, and user authentication
+   through JWT tokens.
+</p>
 
 <h2 id="prerequisites">📌 Prerequisites</h2>
 
